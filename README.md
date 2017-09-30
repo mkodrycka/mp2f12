@@ -44,3 +44,9 @@ Indices used:
 * p, q, ... - all molecular orbitals (OBS)
 * x, y, ... - CABS orbitals
 
+
+
+### REFERENCES
+1) <a href="http://aip.scitation.org/doi/abs/10.1063/1.2712434 "> H.-J. Werner, T. B. Adler, and F. R. Manby, J. Chem. Phys. 126, 164102 (2007) </a> 
+2) <a href="http://aip.scitation.org/doi/abs/10.1063/1.4862255 "> S. Yoo Willow, J. Zhang, E. F. Valeev, and S. Hirata, J. Chem. Phys. 140, 031101 (2014) </a>  
+
