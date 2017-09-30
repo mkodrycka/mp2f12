@@ -27,9 +27,10 @@ with the intermediate matrix elements defined as:
 <img src="http://latex.codecogs.com/gif.latex?X%5E%7Bij%7D_%7Bmn%7D%20%26%3D%20%5Clangle%20ij%7C%20%5Cwidehat%7BF%7D_%7B12%7D%20%5Cwidehat%7BQ%7D_%7B12%7D%20%5Cwidehat%7BF%7D_%7B12%7D%20%7C%20mn%20%5Crangle">
 </p>
 
-<p align ="center">
-<img src = "http://latex.codecogs.com/gif.latex?X%5E%7Bij%7D_%7Bmn%7D%20%26%3D%20%5Clangle%20ij%7C%20%5Cwidehat%7BF%7D_%7B12%7D%20%5Cwidehat%7BQ%7D_%7B12%7D%20%5Cwidehat%7BF%7D_%7B12%7D%20%7C%20mn%20%5Crangle"
+<p align="center"> 
+<img src="http://latex.codecogs.com/gif.latex?B%5E%7Bij%7D_%7Bmn%7D%20%26%3D%20%5Clangle%20ij%7C%20%5Cwidehat%7BF%7D_%7B12%7D%20%5Cwidehat%7BQ%7D_%7B12%7D%20%28%5Cwidehat%7Bf%7D_1%20&plus;%20%5Cwidehat%7Bf%7D_2%20%29%5Cwidehat%7BQ%7D_%7B12%7D%20%5Cwidehat%7BF%7D_%7B12%7D%20%7C%20mn%20%5Crangle">
 </p>
+
 
 and amplitudes:
 
