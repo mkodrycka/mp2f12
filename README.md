@@ -1,4 +1,4 @@
-**MP2-F12(3*C)**
+# **MP2-F12(3*C)**
 
 The code calculates explicitly correlated second-order Moller-Plesset energies (MP2-F12(*C)) with Ten-no's diagonal fixed-amplitude Ansatz.
 
