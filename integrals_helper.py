@@ -18,7 +18,6 @@ two_electron_integrals = ('g', 'f12', 'f12g12', 'f12_squared', 'f12_double_commu
 
 class Integrals:
 	def __init__(self, bs, gamma = 0.0):
-		#self.string = string
 		self.bs_ = bs
 		self.gamma = gamma
 		self.mints_ = MintsHelper(bs['obs'].basisset())
@@ -55,7 +54,6 @@ class Integrals:
 	def s(self, string):
 		baslist = self.get_basis(string)
 	    	b = [i.basisset() for i in baslist]
-		
 		I = np.array(self.mints_.ao_overlap(b[0],b[1]))
             	Imo = self.TransformToMo('s', I, baslist)
 
@@ -65,7 +63,6 @@ class Integrals:
 	def t(self, string):
 		baslist = self.get_basis(string)
 		b = [i.basisset() for i in baslist]
-
                 I = np.array(self.mints_.ao_kinetic(b[0],b[1]))
                 Imo = self.TransformToMo('t', I, baslist)
 
@@ -75,7 +72,6 @@ class Integrals:
 	def v(self, string):
                 baslist = self.get_basis(string)
                 b = [i.basisset() for i in baslist]
-
                 I = np.array(self.mints_.ao_potential(b[0],b[1]))
                 Imo = self.TransformToMo('v', I, baslist)
 
@@ -85,7 +81,6 @@ class Integrals:
 	def g(self, string):
                 baslist = self.get_basis(string)
                 b = [i.basisset() for i in baslist]
-		#I = np.array(self.mints_.ao_eri(b[0],b[2],b[1],b[3]))
 		I = np.array(self.mints_.ao_eri(b[0],b[2],b[1],b[3])).swapaxes(1, 2)
 		Imo = self.TransformToMo('g', I, baslist)
 
@@ -97,9 +92,7 @@ class Integrals:
 		cf = CorrelationFactor(coeffs, exps)
                 baslist = self.get_basis(string)
                 b = [i.basisset() for i in baslist]
-
-		#I = np.array(self.mints_.ao_f12(cf,b[0],b[2],b[1],b[3]))
-                I = np.array(self.mints_.ao_f12(cf,b[0],b[2],b[1],b[3])).swapaxes(1, 2)
+		I = np.array(self.mints_.ao_f12(cf,b[0],b[2],b[1],b[3])).swapaxes(1, 2)
                 Imo = self.TransformToMo('f12', I, baslist)
 
                 return Imo
@@ -110,7 +103,6 @@ class Integrals:
                 cf = CorrelationFactor(coeffs, exps)
                 baslist = self.get_basis(string)
                 b = [i.basisset() for i in baslist]
-
                 I = np.array(self.mints_.ao_f12g12(cf)).swapaxes(1, 2)
                 Imo = self.TransformToMo('f12g12', I, baslist)
 
@@ -122,8 +114,6 @@ class Integrals:
                 cf = CorrelationFactor(coeffs, exps)
                 baslist = self.get_basis(string)
                 b = [i.basisset() for i in baslist]
-
-		#I = np.array(self.mints_.ao_f12_squared(cf,b[0],b[1],b[2],b[3]))
                 I = np.array(self.mints_.ao_f12_squared(cf,b[0],b[2],b[1],b[3])).swapaxes(1, 2)
                 Imo = self.TransformToMo('f12', I, baslist)
 
@@ -135,7 +125,6 @@ class Integrals:
                 cf = CorrelationFactor(coeffs, exps)
                 baslist = self.get_basis(string)
                 b = [i.basisset() for i in baslist]
-
                 I = I = np.array(self.mints_.ao_f12_double_commutator(cf)).swapaxes(1, 2)
                 Imo = self.TransformToMo('f12_double_commutator', I, baslist)
 
