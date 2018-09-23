@@ -1,5 +1,6 @@
 """
-A Psi4 script to compute MP2-F12 energies.
+A Psi4 script to compute MP2-F12 energies
+Ten-no's diagonal fixed-amplitude Ansatz.
 """
 
 __authors__   = "Monika Kodrycka"
@@ -37,6 +38,7 @@ symmetry c1
 
 psi4.set_options({'basis': 'cc-pvdz',
                   'df_basis_mp2':'cc-pvdz-ri',
+		  'scf_type': 'pk',
  		  'mp2_type': 'conv',
                   'e_convergence': 1e-8,
                   'd_convergence': 1e-8,
@@ -58,10 +60,10 @@ def Calculate_B(fk, mp2f12):
 	nri = nmo + ncabs
 	eps = mp2f12.get_eps()
 
+	# Build B Matrix 
 	B = np.zeros((naocc,naocc,naocc,naocc))
 
 	B += mp2f12.f12dc('iiii',1.0)
-
 
 	tmp = np.einsum('pr,lkqr->klpq', fk[:nobs,:nobs], mp2f12.f12('iipp',1.0))
 	B -= np.einsum('mnpq,klpq->klmn', mp2f12.f12('iipp',1.0), tmp)
@@ -128,7 +130,6 @@ def Calculate_B(fk, mp2f12):
         # -FC contribution to B
         B -= np.einsum('klab,mnab->klmn', mp2f12.f12('iiaa',1.0), C)
 
-	
 	# Symmetrize B
 	B = 0.5 * (B + np.einsum('klmn->mnkl', B))
 
@@ -147,12 +148,11 @@ eps = mp2f12.get_eps()
 Eocc = eps[nfocc:nocc]
 Evirt = eps[nocc:]
 
-
 #constant
 psi_hartree2kcalmol = 627.5095
 
+print("\n Start MP2-F12 with Ten-no's diagonal fixed-amplitude Ansatz...\n\n")
 
-print "\n Start MP2-F12 with fixed amplitudes...\n\n"
 
 # Traditional MP2
 D = Eocc.reshape(-1, 1, 1, 1) + Eocc.reshape(-1, 1, 1) - Evirt.reshape(-1, 1) - Evirt
@@ -217,8 +217,6 @@ fk = f + k
 e_f12_X = 0.0
 for i in range(naocc):
         for j in range(naocc):
-                #e_f12_X += (f[i,i] + f[j,j]) * (7.0/32.0) * X[i,j,i,j]
-		#e_f12_X += (f[i,i] + f[j,j]) * (1.0/32.0) * X[i,j,j,i]
 		e_f12_X += (f[nfocc+i,nfocc+i] + f[nfocc+j,nfocc+j]) * (7.0/32.0) * X[i,j,i,j]
 		e_f12_X += (f[nfocc+i,nfocc+i] + f[nfocc+j,nfocc+j]) * (1.0/32.0) * X[i,j,j,i]
 
@@ -236,15 +234,14 @@ for i in range(naocc):
 # Calculate F12 correction
 e_f12 = 2*e_f12_V + e_f12_B - e_f12_X
 
+# Obtain SCF from Psi4
 scf_e = psi4.energy('SCF', return_wfn=False)
-mp2_e = psi4.energy('MP2')
 
-print('\nMP2-F12 with fixed amplitudes:\n')
+print('\nMP2-F12 with fixed amplitudes:')
+print('----------------------------------')
 print('      MP2 correlation energy: %16.9f' % (e_mp2))
 print('      F12 correlation energy: %16.9f' % (e_f12))
 print('  MP2-F12 correlation energy: %16.9f' % (e_mp2 + e_f12))
-print(' MP2-F12 total energy: %16.9f' % (scf_e + e_mp2 + e_f12))
-
 
 
 
