@@ -2,7 +2,7 @@
 Hard-coded fit parameters for 6-GTG to STG fit
 """
 
-from psi4 import Vector
+import psi4
 
 def stggtg(correlation_factor):
 	"""
@@ -10,8 +10,8 @@ def stggtg(correlation_factor):
     	Parameters were produced by Molpro using default weight function.
 	"""
     
-	coeff = Vector(6)
-	exp = Vector(6)
+    	coeff = psi4.core.Vector(6)
+    	exp = psi4.core.Vector(6)
 	
 	if abs(correlation_factor - 0.3) < 1E-6:
        		coeff[0] =  -0.366770;  exp[0] =   0.020000;
