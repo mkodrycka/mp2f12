@@ -1,6 +1,7 @@
-# **MP2-F12(3*C)**
+# **MP2-F12(3C)**
 
-The code calculates explicitly correlated second-order Moller-Plesset energies (MP2-F12(*C)) with Ten-no's diagonal fixed-amplitude Ansatz.
+The explicitly correlated approach is one of the most important breakthroughs in ab initio electronic
+structure theory and broadly used to speed up convergence of electron correlation energy with respect to the basis set size.
 
 The MP2-F12 correlation energy is implemented as the sum of the MP2 correlation energy in the orbital basis set (OBS) and the F12 correction:
 
@@ -8,7 +9,11 @@ The MP2-F12 correlation energy is implemented as the sum of the MP2 correlation 
 <img src="http://latex.codecogs.com/gif.latex?E%24_%7BMP2-F12%7D%24%20%3D%20E%24_%7BMP2%7D%24%20&plus;%20E%24_%7BF12%7D%24">
 </p>
 
-where the last term is expressed as:
+### Included Reference Implementations
+- `mp2f12FixedAnsatz.py`: Explicitly Correlated Second-Order M{\o}ller-Plesset Perturbation Theory (MP2-F12(3C)) with Ten-no's diagonal fixed-amplitude Ansatz.
+- `mp2f12SpinOrbital   `: Explicitly Correlated Second-Order M{\o}ller-Plesset Perturbation Theory (MP2-F12(3C)) with fully optimized amplitudes.
+
+The first code calculates the F12 correction expressed as:
 
 <p align="center"> 
 <img src="http://latex.codecogs.com/gif.latex?E_%7BF12%7D%20%3D%202%5Csum_%7Bi%2Cj%2Ck%2Cl%7D%5E%7Bocc%7D%20V%5E%7Bij%7D_%7Bkl%7D%282t_%7Bij%7D%5E%7Bkl%7D%20-%20t_%7Bji%7D%5E%7Bkl%7D%29%20&plus;%20%5Csum_%7B%20%5Csubstack%7Bi%2Cj%2Ck%2Cl%2C%20%5C%5C%20m%2Cn%7D%7D%5E%7Bocc%7Dt_%7Bkl%7D%5E%7Bmn%7DB%5E%7Bij%7D_%7Bmn%7D%282t_%7Bij%7D%5E%7Bkl%7D-t_%7Bji%7D%5E%7Bkl%7D%29%20-">
@@ -38,7 +43,9 @@ and amplitudes:
 <img src = "http://latex.codecogs.com/gif.latex?t_%7Bij%7D%5E%7Bkl%7D%20%3D%20%5Cfrac%7B3%7D%7B8%7D%20%5Cdelta_%7Bki%7D%20%5Cdelta_%7Blj%7D%20&plus;%20%5Cfrac%7B1%7D%7B8%7D%20%5Cdelta_%7Bkj%7D%20%5Cdelta_%7Bli%7D"
 </p>
 
+In the second code the correlation energy is obtained for each electron pair (i,j) in the iterative approach:
 
+  
 Indices used:
 * i, j, ... - occupied orbitals
 * a, b, ... - virtual orbitals
