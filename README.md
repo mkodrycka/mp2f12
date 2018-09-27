@@ -3,15 +3,15 @@
 The explicitly correlated approach is one of the most important breakthroughs in ab initio electronic
 structure theory and broadly used to speed up convergence of electron correlation energy with respect to the basis set size.
 
-The MP2-F12 correlation energy is implemented as the sum of the MP2 correlation energy in the orbital basis set (OBS) and the F12 correction:
+The MP2-F12 method is implemented as the sum of the MP2 correlation energy in the orbital basis set (OBS) and the F12 correction:
 
 <p align="center"> 
 <img src="http://latex.codecogs.com/gif.latex?E%24_%7BMP2-F12%7D%24%20%3D%20E%24_%7BMP2%7D%24%20&plus;%20E%24_%7BF12%7D%24">
 </p>
 
 ### Included Reference Implementations
-- `mp2f12FixedAnsatz.py`: Explicitly Correlated Second-Order M{\o}ller-Plesset Perturbation Theory (MP2-F12(3C)) with Ten-no's diagonal fixed-amplitude Ansatz.
-- `mp2f12SpinOrbital   `: Explicitly Correlated Second-Order M{\o}ller-Plesset Perturbation Theory (MP2-F12(3C)) with fully optimized amplitudes.
+- `mp2f12FixedAnsatz.py`: Explicitly correlated second-order Moller-Plesset Perturbation Theory (MP2-F12(3C)) with Ten-no's diagonal fixed-amplitude Ansatz
+- `mp2f12SpinOrbital   `:Explicitly correlated second-order Moller-Plesset Perturbation Theory (MP2-F12(3C)) with fully optimized amplitudes
 
 The first code calculates the F12 correction expressed as:
 
@@ -43,8 +43,20 @@ and amplitudes:
 <img src = "http://latex.codecogs.com/gif.latex?t_%7Bij%7D%5E%7Bkl%7D%20%3D%20%5Cfrac%7B3%7D%7B8%7D%20%5Cdelta_%7Bki%7D%20%5Cdelta_%7Blj%7D%20&plus;%20%5Cfrac%7B1%7D%7B8%7D%20%5Cdelta_%7Bkj%7D%20%5Cdelta_%7Bli%7D"
 </p>
 
-In the second code the correlation energy is obtained for each electron pair (i,j) in the iterative approach:
+In the second code the F12 correction is impemented as a sum of each electron pairs (i,j) correlation energy which are expressed as:
+<p align ="center">
+<img src = "https://latex.codecogs.com/gif.latex?e_%7Bij%7D%3D-%5Clbrace%5Coverline%7BV%7D%5E%7Bij%7D%20%5Crbrace%5E%7BT%7D%20%5Clbrace%5Coverline%7BB%7D%5E%7Bij%7D%5Crbrace%5E%7B-1%7D%5Coverline%7BV%7D%5E%7Bij%7D"
+</p>,
+  
+where
 
+<p align ="center">
+<img src = "https://latex.codecogs.com/gif.latex?%5Coverline%7BV%7D%5E%7B%28ij%29%7D_%7Bkl%7D%3D%20V%5E%7B%28ij%29%7D_%7Bkl%7D-%20%5Csum_%7Bab%7D%20%5Cfrac%7BC_%7Bkl%7D%5E%7Bab%7Dg_%7Bab%7D%5E%7Bij%7D%7D%7B%5Cepsilon_a&plus;%5Cepsilon_b-%5Cepsilon_i-%5Cepsilon_j%7D"
+</p>,
+  
+<p align ="center">
+<img src = "https://latex.codecogs.com/gif.latex?%5Coverline%7BB%7D%5E%7Bmn%20%5C%2C%20%28ij%29%7D_%7Bkl%7D%3D%20B%5E%7Bmn%20%5C%2C%20%28ij%29%7D_%7Bkl%7D-%20%5Csum_%7Bab%7D%20%5Cfrac%7BC_%7Bkl%7D%5E%7Bab%7DC_%7Bab%7D%5E%7Bmn%7D%7D%7B%5Cepsilon_a&plus;%5Cepsilon_b-%5Cepsilon_i-%5Cepsilon_j%7D"
+</p>.  
   
 Indices used:
 * i, j, ... - occupied orbitals
